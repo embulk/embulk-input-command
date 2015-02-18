@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.FilterInputStream;
 import org.slf4j.Logger;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -116,7 +117,7 @@ public class CommandFileInputPlugin
                     break;
                 }
 
-                PluginFileInput input = new PluginFileInput(task, process, stream);
+                PluginFileInput input = new PluginFileInput(task, new ProcessWaitInputStream(stream, process));
                 stream = null;
                 return input;
 
@@ -130,6 +131,72 @@ public class CommandFileInputPlugin
         }
     }
 
+    private static class ProcessWaitInputStream
+            extends FilterInputStream
+    {
+        private Process process;
+
+        public ProcessWaitInputStream(InputStream in, Process process)
+        {
+            super(in);
+            this.process = process;
+        }
+
+        @Override
+        public int read() throws IOException
+        {
+            int c = super.read();
+            if (c < 0) {
+                waitFor();
+            }
+            return c;
+        }
+
+        @Override
+        public int read(byte[] b) throws IOException
+        {
+            int c = super.read(b);
+            if (c < 0) {
+                waitFor();
+            }
+            return c;
+        }
+
+        @Override
+        public int read(byte[] b, int off, int len) throws IOException
+        {
+            int c = super.read(b, off, len);
+            if (c < 0) {
+                waitFor();
+            }
+            return c;
+        }
+
+        @Override
+        public void close() throws IOException
+        {
+            super.close();
+            waitFor();
+        }
+
+        private synchronized void waitFor() throws IOException
+        {
+            if (process != null) {
+                int code;
+                try {
+                    code = process.waitFor();
+                } catch (InterruptedException ex) {
+                    throw Throwables.propagate(ex);
+                }
+                process = null;
+                if (code != 0) {
+                    throw new IOException(String.format(
+                                "Command finished with non-zero exit code. Exit code is %d.", code));
+                }
+            }
+        }
+    }
+
     // TODO almost copied from S3FileInputPlugin. include an InputStreamFileInput utility to embulk-core.
     public static class PluginFileInput
             extends InputStreamFileInput
@@ -138,13 +205,11 @@ public class CommandFileInputPlugin
         private static class SingleFileProvider
                 implements InputStreamFileInput.Provider
         {
-            private Process process;
             private InputStream stream;
             private boolean opened = false;
 
-            public SingleFileProvider(Process process, InputStream stream)
+            public SingleFileProvider(InputStream stream)
             {
-                this.process = process;
                 this.stream = stream;
             }
 
@@ -164,18 +229,12 @@ public class CommandFileInputPlugin
                 if (!opened) {
                     stream.close();
                 }
-                process.destroy();
-                try {
-                    process.waitFor();
-                } catch (InterruptedException ex) {
-                    throw Throwables.propagate(ex);
-                }
             }
         }
 
-        public PluginFileInput(PluginTask task, Process process, InputStream stream)
+        public PluginFileInput(PluginTask task, InputStream stream)
         {
-            super(task.getBufferAllocator(), new SingleFileProvider(process, stream));
+            super(task.getBufferAllocator(), new SingleFileProvider(stream));
         }
 
         public void abort() { }
