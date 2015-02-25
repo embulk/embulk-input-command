@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.version       = "${project.version}"
   spec.authors       = ["Sadayuki Furuhashi"]
   spec.summary       = %[Command file input plugin for Embulk]
-  spec.description   = %[Executes commands and writes files to STDIN.]
+  spec.description   = %[Executes commands and reads files to STDIN.]
   spec.email         = ["frsyuki@gmail.com"]
   spec.licenses      = ["Apache 2.0"]
   spec.homepage      = "https://github.com/embulk/embulk-input-command"
