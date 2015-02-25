@@ -12,7 +12,7 @@ configurations {
     provided
 }
 
-version = "0.1.1"
+version = "0.1.2"
 
 dependencies {
     compile  "org.embulk:embulk-core:0.4.8"
@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.version       = "${project.version}"
   spec.authors       = ["Sadayuki Furuhashi"]
   spec.summary       = %[Command file input plugin for Embulk]
-  spec.description   = %[Executes a command and reads data from its STDOUT.]
+  spec.description   = %[Executes a command and reads a file from its STDOUT.]
   spec.email         = ["frsyuki@gmail.com"]
   spec.licenses      = ["Apache 2.0"]
   spec.homepage      = "https://github.com/embulk/embulk-input-command"
