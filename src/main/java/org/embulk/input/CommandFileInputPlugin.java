@@ -68,22 +68,22 @@ public class CommandFileInputPlugin
 
     @Override
     public ConfigDiff resume(TaskSource taskSource,
-            int processorCount,
+            int taskCount,
             FileInputPlugin.Control control)
     {
-        control.run(taskSource, processorCount);
+        control.run(taskSource, taskCount);
         return Exec.newConfigDiff();
     }
 
     @Override
     public void cleanup(TaskSource taskSource,
-            int processorCount,
+            int taskCount,
             List<CommitReport> successCommitReports)
     {
     }
 
     @Override
-    public TransactionalFileInput open(TaskSource taskSource, int processorIndex)
+    public TransactionalFileInput open(TaskSource taskSource, int taskIndex)
     {
         PluginTask task = taskSource.loadTask(PluginTask.class);
 

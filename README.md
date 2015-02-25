@@ -1,6 +1,6 @@
 # Command file input plugin for Embulk
 
-This plugin extends a Command and data from its stdout (or stderr).
+This plugin runs a command and reads data from its stdout (or stderr).
 
 ## Overview
 

@@ -15,8 +15,8 @@ configurations {
 version = "0.1.0"
 
 dependencies {
-    compile  "org.embulk:embulk-core:0.4.2"
-    provided "org.embulk:embulk-core:0.4.2"
+    compile  "org.embulk:embulk-core:0.4.8"
+    provided "org.embulk:embulk-core:0.4.8"
     testCompile "junit:junit:4.+"
 }
 
@@ -37,9 +37,9 @@ task gemspec << { file("build/gemspec").write($/
 Gem::Specification.new do |spec|
   spec.name          = "${project.name}"
   spec.version       = "${project.version}"
-  spec.authors       = ["FURUHASHI Sadayuki"]
+  spec.authors       = ["Sadayuki Furuhashi"]
   spec.summary       = %[Command file input plugin for Embulk]
-  spec.description   = %[Command file input plugin is an Embulk plugin that reads stdout (or stderr) of a command. Output format can be anything supported by parser plugin. Search the parser plugins by 'embulk-parser' keyword.]
+  spec.description   = %[Executes commands and writes files to STDIN.]
   spec.email         = ["frsyuki@gmail.com"]
   spec.licenses      = ["Apache 2.0"]
   spec.homepage      = "https://github.com/embulk/embulk-input-command"
