@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.base.Throwables;
-import org.embulk.config.CommitReport;
+import org.embulk.config.TaskReport;
 import org.embulk.config.Config;
 import org.embulk.config.ConfigDefault;
 import org.embulk.config.ConfigDiff;
@@ -78,7 +78,7 @@ public class CommandFileInputPlugin
     @Override
     public void cleanup(TaskSource taskSource,
             int taskCount,
-            List<CommitReport> successCommitReports)
+            List<TaskReport> successTaskReports)
     {
     }
 
@@ -239,9 +239,9 @@ public class CommandFileInputPlugin
 
         public void abort() { }
 
-        public CommitReport commit()
+        public TaskReport commit()
         {
-            return Exec.newCommitReport();
+            return Exec.newTaskReport();
         }
 
         @Override
