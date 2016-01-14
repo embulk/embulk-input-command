@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.FilterInputStream;
+import com.google.common.annotations.VisibleForTesting;
 import org.slf4j.Logger;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -88,7 +89,7 @@ public class CommandFileInputPlugin
         PluginTask task = taskSource.loadTask(PluginTask.class);
 
         List<String> cmdline = new ArrayList<String>();
-        cmdline.addAll(SHELL);
+        cmdline.addAll(buildShell());
         cmdline.add(task.getCommand());
 
         logger.info("Running command {}", cmdline);
@@ -128,6 +129,17 @@ public class CommandFileInputPlugin
             }
         } catch (IOException ex) {
             throw Throwables.propagate(ex);
+        }
+    }
+
+    @VisibleForTesting
+    static List<String> buildShell()
+    {
+        String osName = System.getProperty("os.name");
+        if(osName.indexOf("Windows") >= 0) {
+            return ImmutableList.of("PowerShell.exe", "-Command");
+        } else {
+            return ImmutableList.of("sh", "-c");
         }
     }
 
