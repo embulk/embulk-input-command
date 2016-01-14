@@ -12,7 +12,7 @@ This plugin runs a command and reads data from its stdout (or stderr).
 - **command**: command line (string, required)
 - **pipe**: stdout or stderr (string, default: stdout)
 
-The **command** is exected using a shell. So it can include pipe (`|`), environment variables (`$VAR`), redirects, and so on.
+The **command** is exected using a shell (`sh -c` on UNIX/Linux, `PowerShell.exe -Command` on Windows). Therefore, it can include pipe (`|`), environment variables (`$VAR`), redirects, and so on.
 
 ## Example
 
