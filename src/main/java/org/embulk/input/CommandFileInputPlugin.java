@@ -42,11 +42,6 @@ public class CommandFileInputPlugin
         public BufferAllocator getBufferAllocator();
     }
 
-    public static final List<String> SHELL = ImmutableList.of(
-        // TODO use ["PowerShell.exe", "-Command"] on windows?
-        "sh", "-c"
-    );
-
     private final Logger logger = Exec.getLogger(getClass());
 
     @Override
