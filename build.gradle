@@ -18,9 +18,9 @@ targetCompatibility = 1.7
 version = "0.1.4"
 
 dependencies {
-    compile  "org.embulk:embulk-core:0.7.+"
-    provided "org.embulk:embulk-core:0.7.+"
-    testCompile 'org.embulk:embulk-core:0.7.+:tests'
+    compile  "org.embulk:embulk-core:0.8.+"
+    provided "org.embulk:embulk-core:0.8.+"
+    testCompile 'org.embulk:embulk-core:0.8.+:tests'
     testCompile "junit:junit:4.+"
 }
 
