@@ -1,0 +1,15 @@
+embulk-input-command
+Copyright 2015-2022, Sadayuki Furuhashi, and the Embulk project
+
+This product includes software developed at
+The Embulk project (https://www.embulk.org/).
+
+The RubyGems distribution of this product bundles products of
+the Jackson project, as-is.
+They are licensed under the Apache Software License, Version 2.0.
+See: https://github.com/FasterXML/jackson
+
+The RubyGems distribution of this product bundles products of
+the Jakarta Bean Validation API 1.1, as-is.
+They are licensed under the Apache Software License, Version 2.0.
+See: https://beanvalidation.org/1.1/
