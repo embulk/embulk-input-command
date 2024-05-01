@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "maven-publish"
     id "signing"
-    id "org.embulk.embulk-plugins" version "0.7.0"
+    alias(libs.plugins.gradle.embulk.plugins)
 }
 repositories {
     mavenCentral()
@@ -32,14 +32,16 @@ java {
 }
 
 dependencies {
-    compileOnly  "org.embulk:embulk-spi:0.11"
-    implementation "org.embulk:embulk-util-config:0.5.0"
-    implementation "org.embulk:embulk-util-file:0.2.0"
+    compileOnly  libs.embulk.spi
+    implementation libs.embulk.util.config
+    implementation libs.embulk.util.file
+    implementation platform(libs.jackson.bom)
+    implementation libs.bundles.jackson
 
-    testImplementation "junit:junit:4.13.2"
-    testImplementation "org.embulk:embulk-core:0.11.3"
-    testImplementation "org.embulk:embulk-deps:0.11.3"
-    testImplementation "org.embulk:embulk-junit4:0.11.3"
+    testImplementation libs.junit4
+    testImplementation libs.embulk.core
+    testImplementation libs.embulk.deps
+    testImplementation libs.embulk.junit4
 }
 
 embulkPlugin {
