@@ -3,6 +3,7 @@ plugins {
     id "maven-publish"
     id "signing"
     alias(libs.plugins.gradle.embulk.plugins)
+    id "checkstyle"
 }
 repositories {
     mavenCentral()
@@ -167,4 +168,14 @@ test {
         showStandardStreams = true
         outputs.upToDateWhen { false }
     }
+}
+
+checkstyle {
+    toolVersion = libs.versions.checkstyle.get()
+    configFile = file("${rootProject.projectDir}/config/checkstyle/checkstyle.xml")
+    configProperties = [
+            "org.checkstyle.google.suppressionfilter.config": file("${rootProject.projectDir}/config/checkstyle/checkstyle-suppressions.xml"),
+    ]
+    ignoreFailures = false
+    maxWarnings = 0
 }
