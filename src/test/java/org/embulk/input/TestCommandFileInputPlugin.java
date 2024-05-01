@@ -1,10 +1,10 @@
 package org.embulk.input;
 
-import com.google.common.collect.ImmutableList;
-import org.junit.Before;
+import java.util.Arrays;
+import java.util.Collections;
 import org.junit.Rule;
 import org.junit.Test;
-import org.embulk.EmbulkTestRuntime;
+import org.embulk.test.EmbulkTestRuntime;
 import static org.embulk.input.CommandFileInputPlugin.buildShell;
 
 import java.util.List;
@@ -19,10 +19,10 @@ public class TestCommandFileInputPlugin
     @Test
     public void testShell() {
         if (System.getProperty("os.name").indexOf("Windows") >= 0) {
-            assertEquals(ImmutableList.of("PowerShell.exe", "-Command"), buildShell());
+            assertEquals(Collections.unmodifiableList(Arrays.asList("PowerShell.exe", "-Command")), buildShell());
         }
         else {
-            assertEquals(ImmutableList.of("sh", "-c"), buildShell());
+            assertEquals(Collections.unmodifiableList(Arrays.asList("sh", "-c")), buildShell());
         }
     }
 }
