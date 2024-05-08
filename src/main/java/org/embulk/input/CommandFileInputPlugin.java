@@ -126,7 +126,7 @@ public class CommandFileInputPlugin
         }
     }
 
-    protected static List<String> buildShell()
+    static List<String> buildShell()
     {
         String osName = System.getProperty("os.name");
         if(osName.indexOf("Windows") >= 0) {
