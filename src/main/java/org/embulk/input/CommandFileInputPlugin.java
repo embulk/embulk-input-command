@@ -71,7 +71,6 @@ public class CommandFileInputPlugin
                         List<TaskReport> successTaskReports) {
     }
 
-    @SuppressWarnings("MissingSwitchDefault")
     @Override
     public TransactionalFileInput open(TaskSource taskSource, int taskIndex) {
         final TaskMapper taskMapper = CONFIG_MAPPER_FACTORY.createTaskMapper();
@@ -91,6 +90,9 @@ public class CommandFileInputPlugin
             case "stderr":
                 builder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
                 break;
+            default:
+                throw new IllegalStateException(String.format(
+                        "Unknown 'pipe' option '%s'. It must be either 'stdout' or 'stderr'", task.getPipe()));
         }
 
         try {
@@ -105,6 +107,9 @@ public class CommandFileInputPlugin
                     case "stderr":
                         stream = process.getErrorStream();
                         break;
+                    default:
+                        throw new IllegalStateException(String.format(
+                                "Unknown 'pipe' option '%s'. It must be either 'stdout' or 'stderr'", task.getPipe()));
                 }
 
                 PluginFileInput input = new PluginFileInput(task, new ProcessWaitInputStream(stream, process));
