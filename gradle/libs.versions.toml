@@ -16,7 +16,6 @@ validation-api = "2.0.1.Final"
 # We choose Jackson with the latest patch release of the latest open branch.
 jackson = "2.16.2"
 
-
 junit4 = "4.13.2"
 
 [libraries]
