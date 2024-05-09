@@ -5,3 +5,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "org.embulk.embulk-plugins"
+      - dependency-name: "org.embulk:embulk-spi"
+      - dependency-name: "org.embulk:embulk-util-config"
+      - dependency-name: "org.embulk:embulk-util-file"
