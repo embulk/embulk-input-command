@@ -18,6 +18,8 @@ jackson = "2.16.2"
 
 junit4 = "4.13.2"
 
+checkstyle = "9.3"
+
 [libraries]
 
 embulk-core = { group = "org.embulk", name = "embulk-core", version.ref = "embulk-core" }
