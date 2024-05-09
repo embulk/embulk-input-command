@@ -1,6 +1,6 @@
-package org.embulk.input;
+package org.embulk.input.command;
 
-import static org.embulk.input.CommandFileInputPlugin.buildShell;
+import static org.embulk.input.command.CommandFileInputPlugin.buildShell;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
