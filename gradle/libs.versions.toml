@@ -1,0 +1,49 @@
+[versions]
+
+gradle-embulk-plugins = "0.7.0"
+
+embulk-core = "0.11.3"
+embulk-spi = "0.11"
+embulk-util-config = "0.5.0"
+embulk-util-file = "0.2.0"
+
+slf4j-api = "2.0.7"
+
+validation-api = "2.0.1.Final"
+
+# See https://github.com/FasterXML/jackson/wiki/Jackson-Releases for Jackson versions.
+#
+# We choose Jackson with the latest patch release of the latest open branch.
+jackson = "2.16.2"
+
+junit4 = "4.13.2"
+
+[libraries]
+
+embulk-core = { group = "org.embulk", name = "embulk-core", version.ref = "embulk-core" }
+embulk-deps = { group = "org.embulk", name = "embulk-deps", version.ref = "embulk-core" }
+embulk-junit4 = { group = "org.embulk", name = "embulk-junit4", version.ref = "embulk-core" }
+embulk-spi = { group = "org.embulk", name = "embulk-spi", version.ref = "embulk-spi" }
+embulk-util-config = { group = "org.embulk", name = "embulk-util-config", version.ref = "embulk-util-config" }
+embulk-util-file = { group = "org.embulk", name = "embulk-util-file", version.ref = "embulk-util-file" }
+jackson-annotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations" }
+jackson-bom = { group = "com.fasterxml.jackson", name = "jackson-bom", version.ref = "jackson" }
+jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind" }
+jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j-api" }
+validation = { group = "javax.validation", name = "validation-api", version.ref = "validation-api" }
+
+[bundles]
+
+jackson = [
+  "jackson-annotations",
+  "jackson-core",
+  "jackson-databind",
+  "jackson-datatype-jdk8",
+]
+
+[plugins]
+
+gradle-embulk-plugins = { id = "org.embulk.embulk-plugins", version.ref = "gradle-embulk-plugins" }
