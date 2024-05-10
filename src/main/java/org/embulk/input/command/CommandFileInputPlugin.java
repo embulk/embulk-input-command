@@ -1,4 +1,4 @@
-package org.embulk.input;
+package org.embulk.input.command;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
