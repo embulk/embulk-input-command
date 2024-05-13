@@ -30,7 +30,7 @@ For Maintainers
 Modify `version` in `build.gradle` at a detached commit, and then tag the commit with an annotation.
 
 ```
-git checkout --detach master
+git checkout --detach main
 
 (Edit: Remove "-SNAPSHOT" in "version" in build.gradle.)
 
