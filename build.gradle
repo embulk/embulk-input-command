@@ -79,6 +79,12 @@ sourcesJar {
     }
 }
 
+javadocJar {
+    metaInf {
+        from rootProject.file("LICENSE")
+    }
+}
+
 // A safer and strict alternative to: "dependencies" (and "dependencies --write-locks")
 //
 // This task fails explicitly when the specified dependency is not available.
